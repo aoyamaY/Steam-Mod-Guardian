@@ -1,0 +1,35 @@
+Feather Icons v4.29.2 — https://github.com/feathericons/feather/tree/v4.29.2
+Vector geometry adapted to WPF. The application icon is an original AI-generated image, not a Feather icon.
+
+The MIT License (MIT)
+
+Copyright (c) 2013-2023 Cole Bemis
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Dependencies (not covered by the project's own LICENSE):
+Mono.Cecil 0.11.6 — MIT — https://github.com/jbevain/cecil
+Microsoft.Diagnostics.Tracing.TraceEvent 3.1.29 — MIT — https://github.com/microsoft/perfview
+.NET 8 runtime — https://github.com/dotnet/runtime and https://github.com/dotnet/wpf
+See runtime notices in the self-contained distribution and package notices collected in licenses/.
+Optional independently obtained tools (not redistributed in this source or release):
+YARA / YARA-X — https://github.com/VirusTotal/yara and https://github.com/VirusTotal/yara-x
+capa / FLOSS — https://github.com/mandiant/capa and https://github.com/mandiant/flare-floss
+TLSH — https://github.com/trendmicro/tlsh
+The Steam name and trademark belong to their respective owner; this is an unofficial community tool.
+
+Mono.Cecil source attribution: Copyright (c) 2008–2015 Jb Evain; Copyright (c) 2008–2011 Novell, Inc. MIT/X11. The MIT permission and disclaimer above apply with those respective copyright notices. TraceEvent is distributed under the MIT license by the PerfView project; package notices govern redistribution.

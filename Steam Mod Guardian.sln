@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steam Mod Guardian", "Guardian.App\Steam Mod Guardian.csproj", "{0F2357B4-DA35-4CC5-9418-C23D5BF1FA01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Core", "Guardian.Core\Guardian.Core.csproj", "{0F2357B4-DA35-4CC5-9418-C23D5BF1FA02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Tests", "Guardian.Tests\Guardian.Tests.csproj", "{0F2357B4-DA35-4CC5-9418-C23D5BF1FA03}"
+EndProject
+Global
+ GlobalSection(SolutionConfigurationPlatforms) = preSolution
+  Debug|Any CPU = Debug|Any CPU
+  Release|Any CPU = Release|Any CPU
+ EndGlobalSection
+ GlobalSection(ProjectConfigurationPlatforms) = postSolution
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA01}.Release|Any CPU.Build.0 = Release|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA02}.Release|Any CPU.Build.0 = Release|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+  {0F2357B4-DA35-4CC5-9418-C23D5BF1FA03}.Release|Any CPU.Build.0 = Release|Any CPU
+ EndGlobalSection
+EndGlobal

@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>WinExe</OutputType><TargetFramework>net8.0-windows</TargetFramework><UseWPF>true</UseWPF><StartupObject>Guardian.App.Program</StartupObject><Version>2.1.0</Version><Product>Steam Mod Guardian</Product><Title>Steam Mod Guardian</Title><ApplicationIcon>Assets/AppIcon.ico</ApplicationIcon><PublishTrimmed>false</PublishTrimmed><EnableWindowsTargeting>true</EnableWindowsTargeting><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><AssemblyName>Steam Mod Guardian</AssemblyName><RootNamespace>Guardian.App</RootNamespace></PropertyGroup>
+  <ItemGroup><Resource Include="Assets/AppIcon.png"/><PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="3.1.29"/><ProjectReference Include="../Guardian.Core/Guardian.Core.csproj" /></ItemGroup>
+</Project>

@@ -1,0 +1,29 @@
+name: Windows portable build
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build and test portable package
+        shell: pwsh
+        run: ./scripts/build-release.ps1
+      - name: Upload portable ZIP and SHA256
+        uses: actions/upload-artifact@v4
+        with:
+          name: SteamModGuardian-win-x64-portable
+          path: |
+            dist/*.zip
+            dist/*.sha256
+          if-no-files-found: error
