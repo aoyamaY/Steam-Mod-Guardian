@@ -33,3 +33,39 @@ jobs:
             dist/*.zip
             dist/*.sha256
           if-no-files-found: error
+  release:
+    name: Publish tagged release
+    needs: windows
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download verified build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: SteamModGuardian-win-x64-portable
+          path: release-assets
+      - name: Publish GitHub Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Expected a stable version tag such as v2.1.0" >&2
+            exit 1
+          fi
+          version="${RELEASE_TAG#v}"
+          name="SteamModGuardian-${version}-win-x64-portable"
+          cd release-assets
+          test -f "$name.zip"
+          test -f "$name.zip.sha256"
+          sha256sum --check "$name.zip.sha256"
+          gh release create "$RELEASE_TAG" \
+            "$name.zip" "$name.zip.sha256" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "Steam Mod Guardian $RELEASE_TAG" \
+            --generate-notes
