@@ -8,7 +8,13 @@ $dist = Join-Path $root 'dist'
 $name = "SteamModGuardian-$version-win-x64-portable"
 $publish = Join-Path $dist $name
 $zip = Join-Path $dist "$name.zip"
-function Invoke-Dotnet { & dotnet @args; if ($LASTEXITCODE -ne 0) { throw "dotnet failed: $LASTEXITCODE" } }
+# Pass literal tokens as an explicit array; PowerShell function argument binding
+# must not interpret MSBuild switches (such as -p:PublishSingleFile=false).
+function Invoke-Dotnet {
+    param([Parameter(Mandatory=$true)][string[]]$Arguments)
+    & dotnet @Arguments
+    if ($LASTEXITCODE -ne 0) { throw "dotnet failed: $LASTEXITCODE" }
+}
 function Smoke([string]$arg) {
     $p = Start-Process -FilePath (Join-Path $publish 'Steam Mod Guardian.exe') -ArgumentList $arg -PassThru
     if (-not $p.WaitForExit(60000)) { try { $p.Kill() } catch {}; throw "Smoke test timed out: $arg" }
@@ -20,8 +26,25 @@ New-Item -ItemType Directory -Force -Path $dist | Out-Null
 if (Test-Path -LiteralPath $publish) { Remove-Item -LiteralPath $publish -Recurse -Force }
 if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
 if (Test-Path -LiteralPath "$zip.sha256") { Remove-Item -LiteralPath "$zip.sha256" -Force }
-Invoke-Dotnet run --project 'Guardian.Tests/Guardian.Tests.csproj' -c Release
-Invoke-Dotnet publish 'Guardian.App/Steam Mod Guardian.csproj' -c Release -r win-x64 --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false -p:DebugType=none -p:DebugSymbols=false -o $publish
+Invoke-Dotnet -Arguments @('--version')
+Invoke-Dotnet -Arguments @('run', '--project', 'Guardian.Tests/Guardian.Tests.csproj', '-c', 'Release')
+$publishArguments = @(
+    'publish'
+    'Guardian.App/Steam Mod Guardian.csproj'
+    '-c'
+    'Release'
+    '-r'
+    'win-x64'
+    '--self-contained'
+    'true'
+    '-p:PublishSingleFile=false'
+    '-p:PublishTrimmed=false'
+    '-p:DebugType=none'
+    '-p:DebugSymbols=false'
+    '-o'
+    $publish
+)
+Invoke-Dotnet -Arguments $publishArguments
 foreach ($file in @('README.md','README.zh-CN.md','LICENSE','THIRD-PARTY-NOTICES.txt','diagnose.bat','SECURITY.md')) { Copy-Item -LiteralPath (Join-Path $root $file) -Destination $publish }
 Copy-Item -LiteralPath (Join-Path $root 'rules') -Destination $publish -Recurse
 $assetsDir = Join-Path $publish 'Guardian.App/Assets'; New-Item -ItemType Directory -Force -Path $assetsDir | Out-Null

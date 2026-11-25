@@ -16,6 +16,12 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+      - name: Verify selected .NET SDK
+        shell: pwsh
+        run: |
+          $sdk = dotnet --version
+          if ($LASTEXITCODE -ne 0 -or $sdk -notmatch '^8\.0\.') { throw "Expected .NET 8 SDK, got: $sdk" }
+          Write-Host "Selected .NET SDK: $sdk"
       - name: Build and test portable package
         shell: pwsh
         run: ./scripts/build-release.ps1
